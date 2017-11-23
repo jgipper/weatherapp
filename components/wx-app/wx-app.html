@@ -1,0 +1,69 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../components/wx-day/wx-day.html">
+
+<dom-module id="wx-app">
+    <template>
+        <style></style>
+
+        <iron-ajax
+            auto
+            url="[[requestUrl]]"
+            handle-as="json"
+            last-response="{{response}}">
+        </iron-ajax>
+
+        <template is="dom-repeat" items="[[groupedResponse]]">
+            <wx-day
+                data="[[item]]">
+            </wx-day>
+        </template>
+    </template>
+    <script>
+        Polymer({
+            is: 'wx-app',
+
+            properties: {
+                response: Object,
+                groupedResponse: {
+                    type    : Array,
+                    computed: '_computeDayGroups(response.list)'
+                },
+                requestUrl: {
+                    type    : Object,
+                    computed: '_computeRequestUrl(cityId,appId)'
+                },
+                cityId: String,
+                appId: String
+            },
+
+            _computeRequestUrl: function(city,app) {
+                return "http://api.openweathermap.org/data/2.5/forecast?id=" + city + "&APPID=" + app;
+            },
+
+            _computeDayGroups: function(response) {
+                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                    tempDayGroups = [],
+                    step = 0,
+                    previousEntryDay = null;
+
+                for (var i = 0; i < response.length; i++) {
+                    var entry = response[i],
+                        entryDate = new Date(entry.dt_txt),
+                        currentEntryDay = entryDate.getDay();
+
+                    if(currentEntryDay !== previousEntryDay) {
+                        previousEntryDay = currentEntryDay,
+                        step++;
+                    }
+                    var property = days[currentEntryDay];
+                    if(!tempDayGroups[step - 1]) {
+                        tempDayGroups[step - 1] = {'day': property, 'values': []};
+                    }
+                    tempDayGroups[step - 1].values.push(entry);
+                }
+                return tempDayGroups;
+            }
+        })
+    </script>
+</dom-module>

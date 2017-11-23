@@ -1,0 +1,23 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="wx-day">
+    <template>
+        <script>
+        </script>
+
+        <h1>[[data.day]]</h1>
+        <template is="dom-repeat" items="[[data.values]]">
+            [[item.dt_txt]]
+        </template>
+    </template>
+    <script>
+        Polymer({
+            is: 'wx-day',
+            properties: {
+                data: {
+                    type    : Object
+                }
+            }
+        })
+    </script>
+</dom-module>

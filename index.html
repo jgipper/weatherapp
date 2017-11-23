@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Weather App">
+
+    <title>Weather app</title>
+    
+    <!-- <link rel="icon" sizes="192x192" href="/App_Themes/Gipper/images/favicons/favicon-192x192.png">
+    <link rel="shortcut icon" href="/App_Themes/Gipper/images/favicons/favicon-72x72.png">
+    <meta name="theme-color" content="#009C80">
+    <link rel="apple-touch-icon" href="/App_Themes/Gipper/images/favicons/favicon-72x72.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/App_Themes/Gipper/images/favicons/favicon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/App_Themes/Gipper/images/favicons/favicon-144x144.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/App_Themes/Gipper/images/favicons/favicon-180x180.png">
+    <meta name="msapplication-TileImage" content="/App_Themes/Gipper/images/favicons/favicon-144x144.png"> -->
+
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="/App_Themes/Gipper/screen.css" /> -->
+
+    <script>
+        // Force all polyfills on
+        if (window.customElements) window.customElements.forcePolyfill = true;
+        ShadyDOM = { force: true };
+        ShadyCSS = { shimcssproperties: true};
+    </script>
+    <script src="./bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+    <link rel="import" href="./components/wx-app/wx-app.html">
+</head>
+<body>
+    <wx-app app-id="144d33bfd5de402bc1feaa1ad8dd601f" city-id="5419396"></wx-app>
+</body>
+</html>

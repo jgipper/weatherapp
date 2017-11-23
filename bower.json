@@ -1,0 +1,22 @@
+{
+  "name": "weatherapp",
+  "homepage": "https://gipper.co/weatherapp",
+  "authors": [
+    "Josh Gipper <jgipper@gmail.com>"
+  ],
+  "description": "Dependencies for building this application",
+  "main": "bower.json",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "iron-ajax": "PolymerElements/iron-ajax#^2.0.6",
+    "polymer": "Polymer/polymer#2.0.0"
+  }
+}
