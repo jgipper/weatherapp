@@ -9,6 +9,7 @@
         <iron-ajax
             auto
             url="[[requestUrl]]"
+            params="[[requestParams]]"
             handle-as="json"
             last-response="{{response}}">
         </iron-ajax>
@@ -29,16 +30,24 @@
                     type    : Array,
                     computed: '_computeDayGroups(response.list)'
                 },
+                requestParams: {
+                    type    : Object,
+                    computed: '_computeRequestParams(zipcode,appId)'
+                },
                 requestUrl: {
                     type    : Object,
-                    computed: '_computeRequestUrl(cityId,appId)'
+                    value   : 'http://api.openweathermap.org/data/2.5/forecast'
                 },
-                cityId: String,
+                zipcode: Number,
                 appId: String
             },
 
-            _computeRequestUrl: function(city,app) {
-                return "http://api.openweathermap.org/data/2.5/forecast?id=" + city + "&APPID=" + app;
+            _computeRequestParams: function(zip,app) {
+                return {
+                    'zip': zip + ',us',
+                    'APPID': app,
+                    'units': 'imperial'
+                };
             },
 
             _computeDayGroups: function(response) {
@@ -49,7 +58,7 @@
 
                 for (var i = 0; i < response.length; i++) {
                     var entry = response[i],
-                        entryDate = new Date(entry.dt_txt),
+                        entryDate = new Date(entry.dt_txt),//convert to using dt, unix
                         currentEntryDay = entryDate.getDay();
 
                     if(currentEntryDay !== previousEntryDay) {

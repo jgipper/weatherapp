@@ -7,7 +7,7 @@
 
         <h1>[[data.day]]</h1>
         <template is="dom-repeat" items="[[data.values]]">
-            [[item.dt_txt]]
+            [[item.dt_txt]] - [[item.main.temp]]<br />
         </template>
     </template>
     <script>
